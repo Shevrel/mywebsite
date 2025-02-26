@@ -12,3 +12,6 @@ def index(request):
         'content': content,
         'current_language': lang
     })
+
+def landing(request):
+    return render(request, 'home/templates/landing.html')

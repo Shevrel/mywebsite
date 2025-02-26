@@ -2,8 +2,12 @@ data = {
     'en': {
         'about_content': "I am a developer passionate about building apps using Django, Kotlin, and more.",
         "hero_section": {
-            "title": "Welcome to My Homepage",
-            "description": "I am a developer passionate about building apps using Django, Kotlin, and more."
+            "title": "Welcome to My Ride",
+            "content": "I am a developer passionate about building apps using Django, Kotlin, and more."
+        },
+        'about': {
+            "title": "About Me",
+            "content": "Professional thrill ride seeker and passionate programmer.",
         },
         'projects': [
             {
@@ -18,20 +22,21 @@ data = {
             }
         ],
         'contact': {
+            'title': "Get your Ticket!",
             'email': "example@example.com",
             'social_links': {
                 'GitHub': "https://github.com/example",
                 'LinkedIn': "https://linkedin.com/in/example"
             }
         },
-        'welcome': "Welcome to My Homepage",
+        'welcome': "Welcome to My Ride",
         'about_heading': "About Me",
         'projects_heading': "Projects",
         'contact_heading': "Contact Me"
     },
     'de': {
         "hero_section": {
-            "title": "Herzlich willkommen auf meiner Homepage",
+            "title": "Willkommen auf meiner Fahrt!",
             "content": "Professioneller Karussellfahrer und leidenschaftlicher Programmierer.",
         },
         'about': {
@@ -51,13 +56,14 @@ data = {
             }
         ],
         'contact': {
+            'title': "Hol dir dein Ticket!",
             'email': "beispiel@example.com",
             'social_links': {
                 'GitHub': "https://github.com/example",
                 'LinkedIn': "https://linkedin.com/in/example"
             }
         },
-        'welcome': "Willkommen auf meiner Homepage",
+        'welcome': "Willkommen auf meiner Fahrt!",
         'projects_heading': "Projekte",
         'contact_heading': "Kontaktiere mich"
     }

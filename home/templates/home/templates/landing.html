@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+<head>
+  <title>Coaster Ride</title>
+  <link rel="stylesheet" href="{% static 'home/css/styles.css'%}">
+
+</head>
+<body>
+  <!-- Station and Track elements added -->
+  <div class="fence"></div>
+  <div class="station"></div>
+  <div class="track"></div>
+
+  <div class="coaster">
+    <img src="{% static 'home/images/coaster.png' %}" alt="Coaster Car">
+    <img src="{% static 'home/images/coaster.png' %}" alt="Coaster Car">
+    <img src="{% static 'home/images/coaster.png' %}" alt="Coaster Car">
+    <img src="{% static 'home/images/coaster.png' %}" alt="Coaster Car">
+  </div>
+
+  <button class="board-btn" onclick="startRide()">Board the Ride</button>
+</body>
+
+<script src="{% static 'home/js/script.js'%}"></script>
+</html>

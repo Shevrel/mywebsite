@@ -1,69 +1,91 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ content.welcome }}{% endblock %}
 
 {% block content %}
+  <link rel="stylesheet" href="{% static 'home/css/styles.css'%}">
+
+    <!-- Coaster Introduction -->
+    <div class="fence"></div>
+    <div class="station"></div>
+    <div class="track"></div>
+    <div class="coaster">
+      <img src="{% static 'home/images/coaster.png' %}" alt="Coaster Car">
+      <img src="{% static 'home/images/coaster.png' %}" alt="Coaster Car">
+      <img src="{% static 'home/images/coaster.png' %}" alt="Coaster Car">
+      <img src="{% static 'home/images/coaster.png' %}" alt="Coaster Car">
+    </div>
+    <button class="board-btn" onclick="startRide()">Board the Ride</button>
+
+
+
+
+  <!-- Main Content Wrapper (Initially Hidden) -->
   <!-- Language Switcher -->
-  <nav class="bg-gray-200 p-4 flex justify-end">
-    <div x-data="{ open: false }" class="relative">
-      <!-- Circular Button with Current Language Flag -->
-      <button @click="open = !open" class="w-10 h-10 flex items-center justify-center bg-white border rounded-full shadow hover:bg-gray-100">
-        <span class="text-xl">{% if current_language == 'en' %}🇬🇧{% else %}🇩🇪{% endif %}</span>
-      </button>
 
-      <!-- Dropdown Menu -->
-      <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-md z-10">
-        <a href="?lang=de" class="block px-4 py-2 hover:bg-blue-500 hover:text-white {% if current_language == 'de' %}font-bold{% endif %}">🇩🇪 Deutsch</a>
-        <a href="?lang=en" class="block px-4 py-2 hover:bg-blue-500 hover:text-white {% if current_language == 'en' %}font-bold{% endif %}">🇬🇧 English</a>
-      </div>
-    </div>
-  </nav>
+  <div id="main-content" style="display: none;">
+    <nav class="bg-gray-200 p-4 flex justify-end">
+      <div x-data="{ open: false }" class="relative">
+        <!-- Circular Button with Current Language Flag -->
+        <button @click="open = !open" class="w-10 h-10 flex items-center justify-center bg-white border rounded-full shadow hover:bg-gray-100">
+          <span class="text-xl">{% if current_language == 'en' %}🇬🇧{% else %}🇩🇪{% endif %}</span>
+        </button>
 
-
-
-  <!-- Hero Section -->
-  <header class="h-screen flex items-center justify-center bg-blue-500 text-white text-center">
-    <div>
-      <h1 class="text-5xl font-bold">{{ content.welcome }}</h1>
-      <p class="text-xl mt-4">{{ content.projects_heading }}</p>
-    </div>
-  </header>
-
-  <!-- About Section -->
-  <section id="about" class="container mx-auto py-20 px-4">
-    <h2 class="text-3xl font-bold">{{ content.about.title }}</h2>
-    <p class="mt-4">{{ content.about.content }}</p>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="bg-gray-200 py-20 px-4">
-    <h2 class="text-3xl font-bold">{{ content.projects_heading }}</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-      {% for project in content.projects %}
-        <div class="bg-white p-4 shadow-md rounded-md">
-          <h3 class="text-2xl font-semibold">{{ project.title }}</h3>
-          <p class="mt-2">{{ project.description }}</p>
-          {% if project.github_link %}
-            <a href="{{ project.github_link }}" class="text-blue-500 hover:underline mt-2 block">GitHub</a>
-          {% endif %}
+        <!-- Dropdown Menu -->
+        <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-md z-10">
+          <a href="?lang=de" class="block px-4 py-2 hover:bg-blue-500 hover:text-white {% if current_language == 'de' %}font-bold{% endif %}">🇩🇪 Deutsch</a>
+          <a href="?lang=en" class="block px-4 py-2 hover:bg-blue-500 hover:text-white {% if current_language == 'en' %}font-bold{% endif %}">🇬🇧 English</a>
         </div>
-      {% endfor %}
-    </div>
-  </section>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <header id="hero" class="h-screen flex items-center justify-center bg-blue-500 text-white text-center">
+      <div>
+        <h1 class="text-5xl font-bold">{{ content.welcome }}</h1>
+        <p class="text-xl mt-4">{{ content.projects_heading }}</p>
+      </div>
+    </header>
 
-  <!-- Contact Section -->
-  <section id="contact" class="container mx-auto py-20 px-4">
-    <h2 class="text-3xl font-bold">{{ content.contact_heading }}</h2>
-    <p class="mt-4">{{ content.contact.email }}</p>
-    <ul class="mt-2">
-      {% for platform, link in content.contact.social_links.items %}
-        <li><a href="{{ link }}" class="text-blue-500 hover:underline">{{ platform }}</a></li>
-      {% endfor %}
-    </ul>
-  </section>
+    <!-- About Section -->
+    <section id="about" class="container mx-auto py-20 px-4">
+      <h2 class="text-3xl font-bold">{{ content.about.title }}</h2>
+      <p class="mt-4">{{ content.about.content }}</p>
+    </section>
 
+    <!-- Projects Section -->
+    <section id="projects" class="bg-gray-200 py-20 px-4">
+      <h2 class="text-3xl font-bold">{{ content.projects_heading }}</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+        {% for project in content.projects %}
+          <div class="bg-white p-4 shadow-md rounded-md">
+            <h3 class="text-2xl font-semibold">{{ project.title }}</h3>
+            <p class="mt-2">{{ project.description }}</p>
+            {% if project.github_link %}
+              <a href="{{ project.github_link }}" class="text-blue-500 hover:underline mt-2 block">GitHub</a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container mx-auto py-20 px-4">
+      <h2 class="text-3xl font-bold">{{ content.contact_heading }}</h2>
+      <p class="mt-4">{{ content.contact.email }}</p>
+      <ul class="mt-2">
+        {% for platform, link in content.contact.social_links.items %}
+          <li><a href="{{ link }}" class="text-blue-500 hover:underline">{{ platform }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
   <!-- Footer -->
   <footer class="bg-gray-800 text-white text-center py-4">
     <p>&copy; 2025 My Homepage</p>
   </footer>
+  </div>
+
+
+  <script src="{% static 'home/js/script.js'%}"></script>
 {% endblock %}
+
